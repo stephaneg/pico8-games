@@ -2,7 +2,7 @@ pico-8 cartridge // http://www.pico-8.com
 version 35
 __lua__
 function _init()
-	p={x=60, y=90, speed=1}
+	init_player()
 	bullets={}
 end
 
@@ -15,6 +15,7 @@ function _update60()
 	if (btnp(❎)) shoot()
 	
 	update_bullets()
+	update_player()
 	
 end
 
@@ -22,10 +23,9 @@ end
 function _draw()
 	cls()
 	--vaisseau
-	spr(1, p.x, p.y)
+	draw_player()
 	--bullets
 	draw_bullets()
-	
 	
 end
 -->8
@@ -54,9 +54,27 @@ function draw_bullets()
 	end
 end
 -->8
---spaceship
+--player
+
+function init_player()
+	p={ x=60, 
+					y=90, 
+					speed=1,
+					sprite=1,
+					burst_time=0
+			}
+end
+
+function update_player()
+	if p.burst_time>0 then
+	end
+			
+end
 
 
+function draw_player()
+	spr(p.sprite, p.x, p.y)
+end
 __gfx__
 00000000006006000060060000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 00000000006006000060060000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
